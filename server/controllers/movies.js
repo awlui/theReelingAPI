@@ -42,11 +42,11 @@ module.exports.addMovie = function(req, res) {
 	Movie
 	  .create({
 	  	id: req.params.movieId,
-	  	poster: "dbNtoDhR9jNhrX1k9lTxD8sTMjd.jpg",
-	  	banner: "IfB9hy4JH1eH6HEfIgIGORXi5h.jpg",
-	  	summary:"In an innocent heartland city, five are shot dead by an expert sniper. The police quickly identify and arrest the culprit, and build a slam-dunk case. But the accused man claims he's innocent and says \"Get Jack Reacher.\" Reacher himself sees the news report and turns up in the city. The defense is immensely relieved, but Reacher has come to bury the guy. Shocked at the accused's request, Reacher sets out to confirm for himself the absolute certainty of the man's guilt, but comes up with more than he bargained for.",
-	  	rating: 6.9,
-	  	title: "Jack Reacher"
+	  	poster: req.body.poster,
+	  	banner: req.body.banner,
+	  	summary: req.body.summary,
+	  	rating: req.body.rating,
+	  	title: req.body.title
 	  })
 	  .then(function(movie) {
 	  	res.status(201).send(movie);

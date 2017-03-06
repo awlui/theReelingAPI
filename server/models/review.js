@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     favorites: {
       type: DataTypes.ARRAY(DataTypes.STRING),
       defaultValue: ["","",""]
-    }
+    },
   }, {
     classMethods: {
       associate: function(models) {

@@ -14,6 +14,10 @@ module.exports = {
       lastName: {
         type: Sequelize.STRING
       },
+      favorites: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
+        defaultValue: ["","",""]
+      },
       biography: {
         type: Sequelize.TEXT
       },

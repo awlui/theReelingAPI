@@ -6,6 +6,8 @@ var userControllers = require('../server/controllers/users');
 /* GET home page. */
 router.get('/user', userControllers.findAllUsers);
 router.get('/movie', movieControllers.findAllMovies);
+router.get('/review', reviewControllers.findAllReviews);
+router.get('/review/:limit', reviewControllers.findReviewsWithLimit);
 
 router.get('/movie/:movieId', movieControllers.findMovie);
 router.get('/user/:userId', userControllers.findUser);

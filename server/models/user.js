@@ -9,6 +9,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    favorites: {
+      type: DataTypes.ARRAY(DataTypes.STRING)
+    },
     biography: {
       type: DataTypes.STRING
     },

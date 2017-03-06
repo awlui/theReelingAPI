@@ -4,7 +4,12 @@ var Review = require('../models').Review;
 
 module.exports.findReview = function(req, res) {
 	Review
-	.findById(req.params.reviewId)
+	.findById(req.params.reviewId, {
+		include: [{
+			model: Movie,
+			attributes: ['poster', 'banner', 'title']
+		}]
+	})
 	.then(function(review) {
 		if (!review) {
 			return res.status(404).send({
@@ -22,9 +27,9 @@ module.exports.addReview = function(req, res) {
 	Review
 	  .create({
 	  	userId: req.params.userId,
-	  	movieId: 75780,
-	  	reviewParagraph: 'review',
-	  	summary: 'summary'
+	  	movieId: req.params.movieId,
+	  	reviewParagraph: req.body.reviewParagraph,
+	  	summary: req.body.summary
 	  })
 	  .then(function(review) {
 	  	res.status(201).send(review);
@@ -80,5 +85,32 @@ module.exports.deleteReview = function(req, res) {
 	  })
 	  .catch(function(err) {
 	  	res.status(400).send(err);
-	  })
+	  });
+}
+
+module.exports.findAllReviews = function(req, res) {
+	Review
+	.findAll()
+	.then(function(reviews){
+		res.status(200).send(reviews)
+	})
+	.catch(function(err) {
+		res.status(400).send(err);
+	})
+}
+module.exports.findReviewsWithLimit = function(req, res) {
+	console.log(req.params.limit, 'amt')
+	Review
+	.findAll({
+		include: [{
+			model: Movie
+		}],
+		limit: req.params.limit
+	})
+	.then(function(reviews) {
+		res.status(200).send(reviews)
+	})
+	.catch(function(err) {
+		res.status(400).send(err);
+	});
 }

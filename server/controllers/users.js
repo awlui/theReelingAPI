@@ -1,5 +1,6 @@
 var User = require('../models').User;
 var Review = require('../models').Review;
+var Movie = require('../models').Movie;
 
 module.exports.findUser = function(req, res) {
 	User.findById(req.params.userId)
@@ -19,9 +20,8 @@ module.exports.findUser = function(req, res) {
 module.exports.createUser = function(req, res) {
 	User
 	  .create({
-	  	firstName: "Andy",
-	  	lastName: "Lui",
-	  	biography: "My name is Andy and I am from Diamond Bar California",
+	  	firstName: req.body.firstName,
+	  	lastName: req.body.lastName,
 	  })
 	  .then(function(user) {
 	  	res.status(201).send(user);
@@ -45,18 +45,21 @@ module.exports.findAllUsers = function(req,res) {
 module.exports.findUserReviews = function(req, res) {
 	User
 	  .findById(req.params.userId, {
-	  	include: [{
-	  		model: Review,
-	  		as: "reviews"
-	  	}]
-	  }) 
+		include: [{
+			model: Review,
+			as: 'reviews',
+			include: [{
+				model: Movie
+			}]
+		}]
+	}) 
 	  .then(function(user) {
 	  	if (!user) {
 	  		res.status(404).send({
 	  			message: "user not found"
 	  		})
 	  	}
-	  	user.status(200).send(user.reviews);
+	  	res.status(200).send(user.reviews);
 	  })
 	  .catch(function(err) {
 	  	res.status(400).send(err);
@@ -74,8 +77,17 @@ module.exports.editProfile = function(req, res) {
 	  	}
 	  	return user.update({
 	  		image: req.body.image || user.image,
-	  		biography: req.body.biography || user.biography
-	  	});
+	  		biography: req.body.biography || user.biography,
+	  		favorites: [req.body.movieOne || user.favorites[0], req.body.movieTwo || user.favorites[1], req.body.movieThree || user.favorites[2]],
+	  		email: req.body.email || user.email
+	  	})
+	  
+		  .then(function(user) {
+		  	res.status(200).send(user);
+		  })
+		  .catch(function(err) {
+		  	res.status(400).send(err);
+		  })
 	  })
 	  .catch(function(err) {
 	  	res.status(400).send(err);

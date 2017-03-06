@@ -14,10 +14,6 @@ module.exports = {
       summary: {
         type: Sequelize.TEXT
       },
-      favorites: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
-        defaultValue: ["","",""]
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

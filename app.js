@@ -4,7 +4,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-// var apiRoutes = require('./routes/index');
+var apiRoutes = require('./routes/index');
 var app = express();
 
 // view engine setup
@@ -17,7 +17,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use('/api', apiRoutes);
+app.use('/api', apiRoutes);
 app.get('/', function(req, res, next) {
 	res.status(200);
 	res.send('good');

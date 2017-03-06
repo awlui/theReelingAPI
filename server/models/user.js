@@ -10,7 +10,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     favorites: {
-      type: DataTypes.ARRAY(DataTypes.STRING)
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      defaultValue: ["","",""]
     },
     biography: {
       type: DataTypes.STRING

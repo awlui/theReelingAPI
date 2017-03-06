@@ -1,7 +1,8 @@
 {
   "name": "movieapi",
   "version": "0.0.0",
-  "private": true,
+  "author": "Andy Lui <awlui2014@gmail.com> (http://awlui.github.io/)",
+  "license": "UNLICENSED",
   "scripts": {
     "start": "node ./bin/www"
   },
@@ -13,5 +14,9 @@
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.2"
-  }
+  },
+  "engines": {
+    "node": "6.9.x",
+    "npm": "3.10.x"
+  },
 }

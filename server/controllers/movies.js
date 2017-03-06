@@ -44,6 +44,7 @@ module.exports.addMovie = function(req, res) {
 	  	id: req.params.movieId,
 	  	poster: req.body.poster,
 	  	banner: req.body.banner,
+	  	releaseDate: req.body.releaseDate,
 	  	summary: req.body.summary,
 	  	rating: req.body.rating,
 	  	title: req.body.title

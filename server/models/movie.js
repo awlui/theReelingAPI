@@ -16,6 +16,9 @@ module.exports = function(sequelize, DataTypes) {
     summary: {
       type: DataTypes.TEXT
     },
+    releaseDate: {
+      type: DataTypes.STRING
+    },
     rating: {
       type: DataTypes.FLOAT
     },

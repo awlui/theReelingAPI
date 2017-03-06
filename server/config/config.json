@@ -1,6 +1,6 @@
 {
   "development": {
-    "use_env_variable": "postgres://anczedlx:WqsS7Dm6F62jteOyXfqBLsBQn_mZxtIv@babar.elephantsql.com:5432/anczedlx",
+    "use_env_variable": "DATABASE_URL",
     "dialect": "postgres"
   },
   "production": {

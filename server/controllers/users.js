@@ -27,9 +27,11 @@ module.exports.createUser = function(req, res) {
 	  	username: req.body.username
 	  })
 	  .then(function(user) {
+	  	console.log('success');
 	  	res.status(201).send(user);
 	  })
 	  .catch(function(err) {
+	  	console.log('failure');
 	  	res.status(400).send(err);
 	  });
 }

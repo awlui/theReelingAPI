@@ -27,12 +27,6 @@ module.exports = function(sequelize, DataTypes) {
     image: {
       type: DataTypes.STRING
     },
-    email: {
-      type: DataTypes.STRING,
-      validate: {
-        isEmail: true
-      }
-    }
   }, {
     classMethods: {
       associate: function(models) {

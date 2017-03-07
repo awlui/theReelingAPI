@@ -23,6 +23,9 @@ module.exports.findMovie = function(req, res) {
 		include: [{
 			model: Review,
 			as: 'reviews'
+			include: {
+				model: User
+			}
 		}]
 	})
 	.then(function(movie) {

@@ -25,13 +25,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      email: {
-        type: Sequelize.STRING,
-        unique: true,
-        validate: {
-          isEmail: true
-        }
-      },
       favorites: {
         type: Sequelize.ARRAY(Sequelize.STRING),
         defaultValue: ["","",""]

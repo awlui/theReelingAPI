@@ -1,6 +1,6 @@
 var Movie = require('../models').Movie;
 var Review = require('../models').Review;
-
+var User = require('../models').User;
 module.exports.findAllMovies = function(req, res) {
 	Movie
 	.findAll({
@@ -22,10 +22,10 @@ module.exports.findMovie = function(req, res) {
 	.findById(req.params.movieId, {
 		include: [{
 			model: Review,
-			as: 'reviews'
-			include: {
+			as: 'reviews',
+			include: [{
 				model: User
-			}
+			}]
 		}]
 	})
 	.then(function(movie) {

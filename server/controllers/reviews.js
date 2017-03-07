@@ -1,6 +1,6 @@
 var Movie = require('../models').Movie;
 var Review = require('../models').Review;
-
+var User = require('../models').User;
 
 module.exports.findReview = function(req, res) {
 	Review
@@ -101,12 +101,14 @@ module.exports.findAllReviews = function(req, res) {
 module.exports.findReviewsWithLimit = function(req, res) {
 	Review
 	.findAll({
-		include: [{
-			model: Movie,
-		}],
-		include: [{
+		include: [
+		{
+			model: Movie
+		},
+		{
 			model: User
-		}],
+		}
+		],
 		limit: req.params.limit
 	})
 	.then(function(reviews) {

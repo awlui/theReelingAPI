@@ -99,11 +99,13 @@ module.exports.findAllReviews = function(req, res) {
 	})
 }
 module.exports.findReviewsWithLimit = function(req, res) {
-	console.log(req.params.limit, 'amt')
 	Review
 	.findAll({
 		include: [{
-			model: Movie
+			model: Movie,
+			include: [{
+				model: User
+			}]
 		}],
 		limit: req.params.limit
 	})

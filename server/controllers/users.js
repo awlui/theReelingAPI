@@ -3,18 +3,27 @@ var Review = require('../models').Review;
 var Movie = require('../models').Movie;
 
 module.exports.findUser = function(req, res) {
-	User.findById(req.params.userId)
+	User
+	  .findById(req.params.userId, {
+		include: [{
+			model: Review,
+			as: 'reviews',
+			include: [{
+				model: Movie
+			}]
+		}]
+	}) 
 	  .then(function(user) {
 	  	if (!user) {
-	  		return res.status(404).send({
-	  			message: "User Not Found"
+	  		res.status(404).send({
+	  			message: "user not found"
 	  		})
 	  	}
 	  	res.status(200).send(user);
 	  })
 	  .catch(function(err) {
 	  	res.status(400).send(err);
-	  })
+	  });
 }
 
 module.exports.createUser = function(req, res) {
@@ -70,6 +79,8 @@ module.exports.findUserReviews = function(req, res) {
 	  	res.status(400).send(err);
 	  });
 }
+
+
 
 module.exports.editProfile = function(req, res) {
 	User

@@ -50,8 +50,7 @@ module.exports.editReview = function(req, res) {
 	  	}
 	  	return review.update({
 	  		reviewParagraph: req.body.reviewParagraph || review.reviewParagraph,
-	  		summary: req.body.summary || review.summary,
-	  		favorites: req.body.favorites || review.favorites
+	  		summary: req.body.summary || review.summary
 	  	})
 	  	.then(function() {
 	  		res.status(201).send(review);

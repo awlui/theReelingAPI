@@ -11,8 +11,9 @@ router.get('/review/:limit', reviewControllers.findReviewsWithLimit);
 
 router.get('/movie/:movieId', movieControllers.findMovie);
 router.get('/user/:userId', userControllers.findUser);
-router.get('/user/:userId/review', userControllers.findUserReviews);
+router.get('/user/:userId/review', userControllers.findUserReviews);  //QUERIES mostRecent and limit
 router.get('/review/:reviewId', reviewControllers.findReview);
+
 
 router.post('/user', userControllers.createUser);
 router.post('/movie/:movieId', movieControllers.addMovie);

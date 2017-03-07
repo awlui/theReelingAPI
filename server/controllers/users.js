@@ -56,12 +56,29 @@ module.exports.findAllUsers = function(req,res) {
 	});
 }
 
+function buildUserReviewArray(query) {
+	var order, limit;
+	if (query.mostRecent && query.mostRecent.toLowerCase() === "true") {
+		order = [['createdAt', 'DESC']];
+	}
+	if (query.limit && parseInt(query.limit, 10)) {
+		limit = parseInt(query.limit, 10);
+	}
+	return {
+		order: order,
+		limit: limit
+	}
+}
+
 module.exports.findUserReviews = function(req, res) {
+	var query = buildUserReviewArray(req.query);
 	User
 	  .findById(req.params.userId, {
 		include: [{
 			model: Review,
 			as: 'reviews',
+			order: query.order,
+			limit: query.limit,
 			include: [{
 				model: Movie
 			}]

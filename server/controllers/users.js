@@ -18,10 +18,13 @@ module.exports.findUser = function(req, res) {
 }
 
 module.exports.createUser = function(req, res) {
+	console.log(req.body);
 	User
 	  .create({
 	  	firstName: req.body.firstName,
 	  	lastName: req.body.lastName,
+	  	password: req.body.password,
+	  	username: req.body.username
 	  })
 	  .then(function(user) {
 	  	res.status(201).send(user);

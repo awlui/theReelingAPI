@@ -47,7 +47,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     instanceMethods: {
       checkPassword: function(password, hashedpw) {
-        return bcrypt.compare();
+        return bcrypt.compare(password, hashedpw);
       }
     }
   });

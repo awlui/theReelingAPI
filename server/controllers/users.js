@@ -15,7 +15,16 @@ module.exports.loginUser = function(req, res) {
 	  			message: "User Not Found"
 	  		});
 	  	}
-	  	res.status(200).send(user);
+	  	user.checkPassword(req.query.password, user.password)
+	  	.then(function(isMatch) {
+	  		res.status(200).send(user);
+	  	})
+	  	.catch(function(err) {
+	  		console.log(err);
+	  		res.status(400).send({
+	  			message: "invalid Password"
+	  		});
+	  	});
 	  })
 	  .catch(function(err) {
 	  	res.status(400).send(err);

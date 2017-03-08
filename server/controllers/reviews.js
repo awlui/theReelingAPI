@@ -7,7 +7,7 @@ module.exports.findReview = function(req, res) {
 	.findById(req.params.reviewId, {
 		include: [{
 			model: Movie,
-			attributes: ['poster', 'banner', 'title']
+			attributes: ['poster', 'banner', 'title', 'userId']
 		}]
 	})
 	.then(function(review) {

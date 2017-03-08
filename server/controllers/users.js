@@ -43,10 +43,11 @@ module.exports.findUser = function(req, res) {
 		}]
 	}) 
 	  .then(function(user) {
+	  	console.log(user)
 	  	if (!user) {
 	  		res.status(404).send({
 	  			message: "User Not found"
-	  		})
+	  		});
 	  	}
 	  	res.status(200).send(user);
 	  })

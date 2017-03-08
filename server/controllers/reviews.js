@@ -19,7 +19,7 @@ module.exports.findReview = function(req, res) {
 				message: "Review Not Found"
 			});
 		}
-		return res.status(200).send(review);
+		return res.status(200).send(review[0]);
 	})
 	.catch(function(err) {
 		res.status(400).send(err);

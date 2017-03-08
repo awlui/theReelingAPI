@@ -52,6 +52,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
   User.beforeCreate(function(user, options) {
+    console.log("Password hashing");
     return User.generateHash(user.password)
     .then(function(hashedPw) {
       user.password = hashedPw;

@@ -19,12 +19,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.set("port", process.env.PORT || 3000);
 app.use(allowCrossDomain);
-
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//passport setup
+setupPassport();
+
 app.use('/api', apiRoutes);
 app.get('/', function(req, res, next) {
 	res.status(200);
@@ -48,8 +50,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// module.exports = app;
+module.exports = app;
 
-app.listen(app.get("port"), function() {
-  console.log("Server started on port " + app.get('port'));
-});

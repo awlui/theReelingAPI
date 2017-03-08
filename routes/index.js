@@ -11,6 +11,7 @@ router.get('/review/:limit', reviewControllers.findReviewsWithLimit);
 
 router.get('/movie/:movieId', movieControllers.findMovie);
 router.get('/user/:userId', userControllers.findUser);
+router.get('/login/user/:username', userControllers.loginUser)
 router.get('/user/:userId/review', userControllers.findUserReviews);  //QUERIES mostRecent and limit
 router.get('/review/:reviewId', reviewControllers.findReview);
 

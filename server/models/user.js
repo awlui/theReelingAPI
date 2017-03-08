@@ -1,4 +1,8 @@
 'use strict';
+var bcrypt = require('bcrypt-as-promised');
+const saltRounds = 10;
+
+
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     firstName: {
@@ -36,8 +40,25 @@ module.exports = function(sequelize, DataTypes) {
           foreignKey: 'userId',
           as: 'reviews',
         });
+      },
+      generateHash: function(password) {
+        return bcrypt.hash(password, saltRounds)
+      }
+    },
+    instanceMethods: {
+      checkPassword: function(password, hashedpw) {
+        return bcrypt.compare();
       }
     }
   });
+  User.beforeCreate(function(user, options) {
+    return User.generateHash(user.password)
+    .then(function(hashedPw) {
+      user.password = hashedPw;
+    }, function(err) {
+      console.log(err)
+    });
+  });
   return User;
 };
+

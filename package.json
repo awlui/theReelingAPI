@@ -4,9 +4,10 @@
   "author": "Andy Lui <awlui2014@gmail.com> (http://awlui.github.io/)",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "node app.js"
+    "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "body-parser": "~1.16.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",

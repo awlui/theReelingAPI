@@ -2,6 +2,26 @@ var User = require('../models').User;
 var Review = require('../models').Review;
 var Movie = require('../models').Movie;
 
+module.exports.loginUser = function(req, res) {
+	User
+	  .findOne({
+	  	where: {
+	  		username: req.params.username
+	  	}
+	  })
+	  .then(function(user) {
+	  	if (!user) {
+	  		res.status(404).send({
+	  			message: "User Not Found"
+	  		});
+	  	}
+	  	res.status(200).send(user);
+	  })
+	  .catch(function(err) {
+	  	res.status(400).send(err);
+	  })
+
+}
 module.exports.findUser = function(req, res) {
 	User
 	  .findById(req.params.userId, {
@@ -16,7 +36,7 @@ module.exports.findUser = function(req, res) {
 	  .then(function(user) {
 	  	if (!user) {
 	  		res.status(404).send({
-	  			message: "user not found"
+	  			message: "User Not found"
 	  		})
 	  	}
 	  	res.status(200).send(user);
@@ -33,14 +53,14 @@ module.exports.createUser = function(req, res) {
 	  	firstName: req.body.firstName,
 	  	lastName: req.body.lastName,
 	  	password: req.body.password,
-	  	username: req.body.username
+	  	username: req.body.username,
 	  })
 	  .then(function(user) {
 	  	console.log('success');
 	  	res.status(201).send(user);
 	  })
 	  .catch(function(err) {
-	  	console.log('failure');
+	  	console.log(err);
 	  	res.status(400).send(err);
 	  });
 }

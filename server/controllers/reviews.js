@@ -4,7 +4,10 @@ var User = require('../models').User;
 
 module.exports.findReview = function(req, res) {
 	Review
-	.findById(req.params.reviewId, {
+	.findOne({
+		where: {
+			id: req.params.reviewId
+		},
 		include: [{
 			model: Movie,
 			attributes: ['poster', 'banner', 'title', 'userId']
